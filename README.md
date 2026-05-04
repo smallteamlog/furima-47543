@@ -53,7 +53,7 @@
 | city             | string     | null: false                    | 
 | street           | string     | null: false                    |
 | building_name    | string     |                                |
-| phone_number     | string     | null: false                    | 
+| phone_number     | integer    | null: false                    | 
 | order            | references | null: false, foreign_key: true | 
 
 - belongs_to :order
