@@ -5,10 +5,10 @@
 | nickname           | string  | null: false               |
 | email              | string  | null: false, unique: true |
 | encrypted_password | string  | null: false               |
-| name_kanji_last    | string  | null: false               |
-| name_kanji_first   | string  | null: false               |
-| name_kana_last     | string  | null: false               |
-| name_kana_first    | string  | null: false               |
+| last_name          | string  | null: false               |
+| first_name         | string  | null: false               |
+| last_name_kana     | string  | null: false               |
+| first_name_kana    | string  | null: false               |
 | birth_date         | date    | null: false               |
 
 ### Association
@@ -53,7 +53,7 @@
 | city             | string     | null: false                    | 
 | street           | string     | null: false                    |
 | building_name    | string     |                                |
-| phone_number     | string     | null: false                    | 
+| phone_number     | integer    | null: false                    | 
 | order            | references | null: false, foreign_key: true | 
 
 - belongs_to :order
