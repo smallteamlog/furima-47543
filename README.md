@@ -21,12 +21,12 @@
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
 | name                   | string     | null: false                    |
-| explanation            | text       | null: false                    |
+| info                   | text       | null: false                    |
 | category_id            | integer    | null: false                    |
-| situation_id           | integer    | null: false                    |
-| shipping_id            | integer    | null: false                    |
+| sales_status_id        | integer    | null: false                    |
+| shipping_fee_id        | integer    | null: false                    |
 | prefecture_id          | integer    | null: false                    |
-| days_until_shipping_id | integer    | null: false                    |
+| scheduled_delivery_id  | integer    | null: false                    |
 | price                  | integer    | null: false                    |
 | user                   | references | null: false, foreign_key: true |
 
