@@ -6,7 +6,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
     @order_destination = OrderDestination.new(order_params)
 
     if @order_destination.valid?
