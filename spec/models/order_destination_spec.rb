@@ -19,6 +19,11 @@ RSpec.describe OrderDestination, type: :model do
     end
 
     context '内容に問題がある場合' do
+      it 'tokenが空では登録できないこと' do
+        @order_destination.token = nil
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Token can't be blank")
+      end
       it 'post_codeが空だと保存できないこと' do
         @order_destination.post_code = ''
         @order_destination.valid?
