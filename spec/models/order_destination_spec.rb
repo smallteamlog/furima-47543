@@ -7,7 +7,7 @@ RSpec.describe OrderDestination, type: :model do
     @order_destination = FactoryBot.build(:order_destination, user_id: user.id, item_id: item.id)
     sleep 0.05
   end
-  describe '寄付情報の保存' do
+  describe '購入情報の保存' do
     context '内容に問題ない場合' do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@order_destination).to be_valid
@@ -58,8 +58,18 @@ RSpec.describe OrderDestination, type: :model do
         expect(@order_destination.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it 'phone_numberは10桁以上11桁以下でないと保存できないこと' do
+      it 'phone_numberは9桁以下だと保存できないこと' do
         @order_destination.phone_number = '090123456'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'phone_numberは12桁以上だと保存できないこと' do
+        @order_destination.phone_number = '090123456789'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'phone_numberは半角数字でなければ保存できないこと' do
+        @order_destination.phone_number = 'abcdefghij'
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include('Phone number is invalid')
       end
@@ -67,6 +77,11 @@ RSpec.describe OrderDestination, type: :model do
         @order_destination.user_id = nil
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていないと保存できないこと' do
+        @order_destination.item_id = nil
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
